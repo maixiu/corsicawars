@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Canvas x:Key="lol">
+        <Canvas Name="g7">
+            <Canvas Name="base">
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path10" Fill="#FFFFFF" Stroke="#000000" StrokeThickness="2.5" Data="M 0 0.138 C 0 3.917 3.089 7.006 6.867 7.006 L 159.656 7.006 C 163.425 7.006 166.513 3.917 166.513 0.138 L 166.513 -228.177 C 166.513 -231.956 163.424 -235.044 159.656 -235.044 L 6.867 -235.044 C 3.089 -235.044 0 -231.956 0 -228.177 L 0 0.138 z"/>
+            </Canvas>
+        </Canvas>
+        <Canvas Name="g12">
+            <Canvas Name="ace">
+                <TextBlock xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" FontSize="40px" FontFamily="CopperplateGothic-Bold" Name="text15">A</TextBlock>
+            </Canvas>
+        </Canvas>
+        <Canvas Name="g17">
+            <Canvas Name="ace_1_">
+                <TextBlock xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" FontSize="40px" FontFamily="CopperplateGothic-Bold" Name="text20">A</TextBlock>
+            </Canvas>
+        </Canvas>
+        <Canvas Name="g22">
+            <Canvas Name="club">
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path25" Fill="#000000" Data="M 10.296 -189.568 C 10.296 -187.758 11.806 -186.289 13.675 -186.289 C 15.544 -186.289 17.054 -187.758 17.054 -189.568 C 17.054 -191.377 15.544 -192.846 13.675 -192.846 C 11.806 -192.846 10.296 -191.377 10.296 -189.568 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path27" Fill="#000000" Data="M 5.938 -183.36 C 5.938 -181.551 7.448 -180.081 9.317 -180.081 C 11.186 -180.081 12.696 -181.551 12.696 -183.36 C 12.696 -185.17 11.186 -186.639 9.317 -186.639 C 7.448 -186.639 5.938 -185.17 5.938 -183.36 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path29" Fill="#000000" Data="M 14.595 -183.34 C 14.595 -182.68 14.795 -182.061 15.145 -181.541 C 15.745 -180.651 16.794 -180.062 17.974 -180.062 C 19.844 -180.062 21.353 -181.532 21.353 -183.341 C 21.353 -185.151 19.844 -186.62 17.974 -186.62 C 16.104 -186.619 14.595 -185.15 14.595 -183.34 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path31" Fill="#000000" Data="M 9.707 -176.973 C 11.376 -176.973 12.256 -178.332 12.716 -179.692 C 13.175 -181.051 13.216 -182.411 13.216 -182.411 L 14.076 -182.411 C 14.076 -182.411 14.236 -176.983 17.575 -176.973 L 9.707 -176.973 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path33" Fill="#000000" Data="M 15.964 -187.159 C 14.065 -185.26 14.065 -182.41 14.065 -182.41 L 13.215 -182.4 C 13.215 -182.4 13.215 -185.309 11.366 -187.158"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path35" Fill="#000000" Data="M 15.584 -181.062 C 13.685 -182.961 10.836 -182.961 10.836 -182.961 L 10.836 -183.811 C 10.836 -183.811 13.745 -183.811 15.594 -185.661"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path37" Fill="#000000" Data="M 11.776 -181.051 C 13.675 -182.95 16.525 -182.95 16.525 -182.95 L 16.525 -183.8 C 16.525 -183.8 13.616 -183.8 11.767 -185.649"/>
+            </Canvas>
+        </Canvas>
+        <Canvas Name="g39">
+            <Canvas Name="club_1_">
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path42" Fill="#000000" Data="M 157.216 -39.467 C 157.216 -41.277 155.707 -42.746 153.838 -42.746 C 151.968 -42.746 150.459 -41.277 150.459 -39.467 C 150.459 -37.658 151.968 -36.188 153.838 -36.188 C 155.707 -36.188 157.216 -37.658 157.216 -39.467 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path44" Fill="#000000" Data="M 161.575 -45.675 C 161.575 -47.484 160.066 -48.954 158.197 -48.954 C 156.327 -48.954 154.818 -47.484 154.818 -45.675 C 154.818 -43.865 156.327 -42.396 158.197 -42.396 C 160.066 -42.396 161.575 -43.865 161.575 -45.675 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path46" Fill="#000000" Data="M 152.918 -45.695 C 152.918 -46.355 152.718 -46.974 152.368 -47.494 C 151.768 -48.384 150.719 -48.973 149.539 -48.973 C 147.669 -48.973 146.16 -47.503 146.16 -45.694 C 146.16 -43.884 147.669 -42.415 149.539 -42.415 C 151.409 -42.416 152.918 -43.885 152.918 -45.695 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path48" Fill="#000000" Data="M 157.806 -52.063 C 156.137 -52.063 155.257 -50.703 154.797 -49.344 C 154.337 -47.985 154.297 -46.625 154.297 -46.625 L 153.438 -46.625 C 153.438 -46.625 153.278 -52.053 149.939 -52.063 L 157.806 -52.063 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path50" Fill="#000000" Data="M 151.549 -41.876 C 153.448 -43.775 153.448 -46.625 153.448 -46.625 L 154.298 -46.635 C 154.298 -46.635 154.298 -43.726 156.148 -41.877"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path52" Fill="#000000" Data="M 151.928 -47.974 C 153.827 -46.075 156.677 -46.075 156.677 -46.075 L 156.677 -45.225 C 156.677 -45.225 153.768 -45.225 151.919 -43.376"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path54" Fill="#000000" Data="M 155.737 -47.984 C 153.838 -46.085 150.989 -46.085 150.989 -46.085 L 150.989 -45.235 C 150.989 -45.235 153.898 -45.235 155.747 -43.386"/>
+            </Canvas>
+        </Canvas>
+        <Canvas Name="g56">
+            <Canvas Name="club_2_">
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path59" Fill="#000000" Data="M 75.719 -132.565 C 75.719 -128.223 79.342 -124.696 83.828 -124.696 C 88.314 -124.696 91.937 -128.223 91.937 -132.565 C 91.937 -136.907 88.314 -140.434 83.828 -140.434 C 79.342 -140.434 75.719 -136.907 75.719 -132.565 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path61" Fill="#000000" Data="M 65.259 -117.667 C 65.259 -113.325 68.882 -109.798 73.368 -109.798 C 77.854 -109.798 81.477 -113.325 81.477 -117.667 C 81.477 -122.009 77.854 -125.536 73.368 -125.536 C 68.882 -125.536 65.259 -122.009 65.259 -117.667 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path63" Fill="#000000" Data="M 86.036 -117.619 C 86.036 -116.036 86.515 -114.548 87.355 -113.301 C 88.794 -111.166 91.313 -109.75 94.145 -109.75 C 98.631 -109.75 102.254 -113.277 102.254 -117.619 C 102.254 -121.961 98.631 -125.488 94.145 -125.488 C 89.659 -125.488 86.036 -121.961 86.036 -117.619 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path65" Fill="#000000" Data="M 74.304 -102.336 C 78.311 -102.336 80.422 -105.599 81.526 -108.861 C 82.63 -112.124 82.725 -115.386 82.725 -115.386 L 84.788 -115.386 C 84.788 -115.386 85.172 -102.359 93.185 -102.335 L 74.304 -102.335 L 74.304 -102.336 z"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path67" Fill="#000000" Data="M 89.322 -126.783 C 84.764 -122.224 84.764 -115.387 84.764 -115.387 L 82.724 -115.363 C 82.724 -115.363 82.724 -122.344 78.286 -126.783"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path69" Fill="#000000" Data="M 88.411 -112.148 C 83.853 -116.707 77.015 -116.707 77.015 -116.707 L 77.015 -118.746 C 77.015 -118.746 83.996 -118.746 88.435 -123.184"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path71" Fill="#000000" Data="M 79.27 -112.125 C 83.828 -116.683 90.666 -116.683 90.666 -116.683 L 90.666 -118.723 C 90.666 -118.723 83.685 -118.723 79.246 -123.161"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+</ResourceDictionary>
