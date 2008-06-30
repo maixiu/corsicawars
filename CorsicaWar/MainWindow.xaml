@@ -13,6 +13,8 @@
                 <MenuItem Name="miAbout" Header="About..." Click="miAbout_Click"/>
             </MenuItem>
         </Menu>
-        <local:GameBoard x:Name="mainBoard"/>
+        <Viewbox>
+            <local:PrettyGameBoard x:Name="mainBoard"/>
+        </Viewbox>
     </DockPanel>
 </Window>

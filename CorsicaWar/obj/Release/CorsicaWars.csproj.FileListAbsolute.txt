@@ -38,5 +38,6 @@ C:\Documents and Settings\Matthieu\My Documents\CorsicaWar\CorsicaWar\obj\Releas
 C:\Documents and Settings\Matthieu\My Documents\CorsicaWar\CorsicaWar\obj\Release\GameBoardPretty.baml
 C:\Documents and Settings\Matthieu\My Documents\CorsicaWar\CorsicaWar\obj\Release\GameBoardPretty.g.cs
 D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Release\CardDictionary.baml
-D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Release\GameBoardPretty.baml
-D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Release\GameBoardPretty.g.cs
+D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Release\App.baml
+D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Release\PrettyGameBoard.baml
+D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Release\PrettyGameBoard.g.cs

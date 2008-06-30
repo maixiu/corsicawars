@@ -39,5 +39,6 @@ C:\Documents and Settings\Matthieu\My Documents\CorsicaWar\CorsicaWar\obj\Debug\
 C:\Documents and Settings\Matthieu\My Documents\CorsicaWar\CorsicaWar\obj\Debug\App.baml
 C:\Documents and Settings\Matthieu\My Documents\CorsicaWar\CorsicaWar\obj\Debug\GameBoardPretty.g.cs
 D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Debug\CardDictionary.baml
-D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Debug\GameBoardPretty.baml
-D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Debug\GameBoardPretty.g.cs
+D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Debug\PrettyGameBoard.baml
+D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Debug\App.baml
+D:\My Documents\Visual Studio 2008\Projects\CorsicaWar\CorsicaWar\obj\Debug\PrettyGameBoard.g.cs
