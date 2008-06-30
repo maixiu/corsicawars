@@ -1,0 +1,18 @@
+﻿<Window x:Class="CorsicaWars.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:CorsicaWars"
+    Title="Corsica Wars" Height="457.28" Width="440.132">
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Game">
+                <MenuItem Name="miNew" Header="New Game" Click="miNew_Click"/>
+                <MenuItem Name="miExit" Header="Exit" Click="miExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Name="miAbout" Header="About..." Click="miAbout_Click"/>
+            </MenuItem>
+        </Menu>
+        <local:GameBoard x:Name="mainBoard"/>
+    </DockPanel>
+</Window>
