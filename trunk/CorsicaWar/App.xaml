@@ -5,7 +5,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="CardDictionary.xaml"/>
+                <ResourceDictionary Source="CardDictionary_clubs.xaml"/>
+                <ResourceDictionary Source="CardDictionary_back.xaml"/>
+                <ResourceDictionary Source="CardDictionary_diamonds.xaml"/>
+                <ResourceDictionary Source="CardDictionary_hearts.xaml"/>
+                <ResourceDictionary Source="CardDictionary_spades.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
