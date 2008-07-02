@@ -107,6 +107,7 @@ namespace CorsicaWars
 
                 if (Application.Current.Resources.Contains(key))
                 {
+                    cardMiddle.Visibility = Visibility.Visible;
                     cardMiddle.Child = (Viewbox)Application.Current.Resources[key];
                 }
                 else
@@ -119,9 +120,7 @@ namespace CorsicaWars
             }
             else
             {
-                Border b = new Border();
-                b.Background = Brushes.White;
-                cardMiddle.Child = b;
+                cardMiddle.Visibility = Visibility.Hidden;
             }
         }
 
