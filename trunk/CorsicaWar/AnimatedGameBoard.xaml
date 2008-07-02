@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="CorsicaWars.AnimatedGameBoard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="500" Width="500">
+    <UserControl.Resources>
+        <Style x:Key="CardStyle">
+            <Setter Property="Control.Width" Value="100"/>
+            <Setter Property="Control.Height" Value="100"/>
+            <Setter Property="Control.BitmapEffect">
+                <Setter.Value>
+                    <DropShadowBitmapEffect ShadowDepth="5" Color="Gray"  Softness="10"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Key="DistributeStoryBoard">
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="20" To="200"
+                             Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" From="200" To="50"
+                             Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="20" To="200"
+                             BeginTime="0:0:0.5" Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" From="200" To="350"
+                             BeginTime="0:0:0.5" Duration="0:0:0.5"/>
+            <!--<DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" To="{Binding ElementName=cardPlayer1, Path=(Canvas.Top)}"
+                             Duration="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" To="{Binding ElementName=cardPlayer1, Path=(Canvas.Left)}"
+                             BeginTime="0:0:1" Duration="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" To="{Binding ElementName=cardPlayer1, Path=(Canvas.Top)}"
+                             BeginTime="0:0:1" Duration="0:0:1"/>-->
+        </Storyboard>
+        <Storyboard x:Key="lol">
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" To="200" Duration="0:0:1"/>
+        </Storyboard>
+    </UserControl.Resources>
+    
+    <Canvas x:Name="canvasBoard">
+        <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" Canvas.Left="200" Canvas.Top="50"
+                MouseLeftButtonUp="cardPlayer1_MouseLeftButtonUp" />
+        <Border x:Name="cardMiddle" Style="{StaticResource CardStyle}" Canvas.Left="200" Canvas.Top="200" />
+        <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}"
+                MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp" Canvas.Left="200" Canvas.Top="350" />
+        <Border x:Name="distribDeck" Style="{StaticResource CardStyle}" Canvas.Left="20" Canvas.Top="200"
+                Child="{StaticResource back1}" MouseLeftButtonUp="distribDeck_MouseLeftButtonUp" />
+    </Canvas>
+</UserControl>

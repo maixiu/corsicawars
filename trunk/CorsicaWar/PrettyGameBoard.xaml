@@ -34,9 +34,6 @@
         </Border>
         <Border x:Name="cardPlayer2" Grid.Row="2" Grid.Column="1" Style="{StaticResource CardStyle}"
                 MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp"/>
-        <Canvas Grid.Row="1" Grid.Column="0">
-            <Border Child="{StaticResource back1}" Style="{StaticResource CardStyle}"/>
-        </Canvas>
         
         <!-- Player1 information -->
         <Grid Grid.Row="0" Grid.Column="2" ShowGridLines="False">
