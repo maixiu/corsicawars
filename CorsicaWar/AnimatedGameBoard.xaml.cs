@@ -28,32 +28,34 @@ namespace CorsicaWars
 
         public AnimatedGameBoard()
         {
-            //player1 = new Player("Masahiro");
-            //player2 = new Player("Miyazaki");
-            //referee = new Referee();
-            //referee.PlayerWin += new PlayerWinEventHandler(referee_PlayerWin);
-            //middleDeck = new Deck();
+            player1 = new Player("Masahiro");
+            player2 = new Player("Miyazaki");
+            referee = new Referee();
+            referee.PlayerWin += new PlayerWinEventHandler(referee_PlayerWin);
+            middleDeck = new Deck();
 
-            //CreateCardBox();
+            CreateCardBox();
 
             InitializeComponent();
+            cardPlayer1.Child = (Viewbox)Application.Current.Resources["back1"];
+            cardPlayer2.Child = (Viewbox)Application.Current.Resources["back1"];
         }
 
         void referee_PlayerWin(Player winPlayer)
         {
-            //MessageBox.Show(string.Format("The player: {0} win this game!!!", winPlayer.Name));
+            MessageBox.Show(string.Format("The player: {0} win this game!!!", winPlayer.Name));
         }
 
         public void CreateCardBox()
         {
-            //cardBox = new Deck();
-            //foreach (CardType card in Enum.GetValues(typeof(CardType)))
-            //{
-            //    foreach (ColorType color in Enum.GetValues(typeof(ColorType)))
-            //    {
-            //        cardBox.AddCard(new Card() { Type = card, Color = color });
-            //    }
-            //}
+            cardBox = new Deck();
+            foreach (CardType card in Enum.GetValues(typeof(CardType)))
+            {
+                foreach (ColorType color in Enum.GetValues(typeof(ColorType)))
+                {
+                    cardBox.AddCard(new Card() { Type = card, Color = color });
+                }
+            }
         }
 
         public void BeginGame()
@@ -144,7 +146,10 @@ namespace CorsicaWars
             bDistrib.Height = distribDeck.Height;
             bDistrib.Child = (Viewbox)Application.Current.Resources["back1"];
             canvasBoard.Children.Add(bDistrib);
+
             bDistrib.BeginStoryboard((Storyboard)this.Resources["DistributeStoryBoard"]);
+
+            
         }
     }
 }
