@@ -15,12 +15,40 @@
     </UserControl.Resources>
     
     <Canvas x:Name="canvasBoard">
-        <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" Canvas.Left="200" Canvas.Top="50" Visibility="Hidden"
+        <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" Canvas.Left="200" Canvas.Top="50"
                 MouseLeftButtonUp="cardPlayer1_MouseLeftButtonUp"/>
         <Border x:Name="cardMiddle" Style="{StaticResource CardStyle}" Canvas.Left="200" Canvas.Top="200" />
-        <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}" Visibility="Hidden"
+        <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}"
                 MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp" Canvas.Left="200" Canvas.Top="350" />
+        <Border x:Name="distribCardAnim" Style="{StaticResource CardStyle}" Canvas.Left="20" Canvas.Top="200" />
         <Border x:Name="distribDeck" Style="{StaticResource CardStyle}" Canvas.Left="20" Canvas.Top="200"
-                Child="{StaticResource back1}" MouseLeftButtonUp="distribDeck_MouseLeftButtonUp" />
+                Child="{StaticResource back1}">
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.MouseLeftButtonUp">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="cardPlayer1" Storyboard.TargetProperty="(Canvas.Left)"
+                                             Duration="0:0:1" By="100"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.6"
+                                             To="{Binding ElementName=cardPlayer1, Path=(Canvas.Left)}"
+                                             FillBehavior="Stop"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Duration="0:0:0.6"
+                                             To="{Binding ElementName=cardPlayer1, Path=(Canvas.Top)}"
+                                             FillBehavior="Stop"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.6"
+                                             To="{Binding ElementName=cardPlayer2, Path=(Canvas.Left)}"
+                                             BeginTime="0:0:0.6" FillBehavior="Stop"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Duration="0:0:0.6"
+                                             To="{Binding ElementName=cardPlayer2, Path=(Canvas.Top)}"
+                                             BeginTime="0:0:0.6" FillBehavior="Stop"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+        </Border>
     </Canvas>
 </UserControl>

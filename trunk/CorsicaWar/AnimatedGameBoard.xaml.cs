@@ -39,6 +39,7 @@ namespace CorsicaWars
             InitializeComponent();
             cardPlayer1.Child = (Viewbox)Application.Current.Resources["back1"];
             cardPlayer2.Child = (Viewbox)Application.Current.Resources["back1"];
+            distribCardAnim.Child = (Viewbox)Application.Current.Resources["back1"];
         }
 
         void referee_PlayerWin(Player winPlayer)
@@ -139,22 +140,36 @@ namespace CorsicaWars
 
         private void distribDeck_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Border bDistrib = new Border();
-            Canvas.SetLeft(bDistrib, (double)distribDeck.GetValue(Canvas.LeftProperty));
-            Canvas.SetTop(bDistrib, (double)distribDeck.GetValue(Canvas.TopProperty));
-            bDistrib.Width = distribDeck.Width;
-            bDistrib.Height = distribDeck.Height;
-            bDistrib.Child = (Viewbox)Application.Current.Resources["back1"];
-            canvasBoard.Children.Add(bDistrib);
+            //Border bDistrib = new Border();
+            //Canvas.SetLeft(bDistrib, (double)distribDeck.GetValue(Canvas.LeftProperty));
+            //Canvas.SetTop(bDistrib, (double)distribDeck.GetValue(Canvas.TopProperty));
+            //bDistrib.Width = distribDeck.Width;
+            //bDistrib.Height = distribDeck.Height;
+            //bDistrib.Child = (Viewbox)Application.Current.Resources["back1"];
+            //canvasBoard.Children.Add(bDistrib);
 
-            Storyboard moveCards = new Storyboard();
-            DoubleAnimation move1 = new DoubleAnimation(10, 100, TimeSpan.FromSeconds(1));
-            moveCards.Children.Add(move1);
+            //Storyboard moveCards = new Storyboard();
+            //moveCards.RepeatBehavior = new RepeatBehavior(10);
+            //DoubleAnimation moveLeft1 = new DoubleAnimation((double)cardPlayer1.GetValue(Canvas.LeftProperty),
+            //    TimeSpan.FromMilliseconds(300), FillBehavior.Stop);
+            //DoubleAnimation moveTop1 = new DoubleAnimation((double)cardPlayer1.GetValue(Canvas.TopProperty),
+            //    TimeSpan.FromMilliseconds(300), FillBehavior.Stop);
+            //DoubleAnimation moveLeft2 = new DoubleAnimation((double)cardPlayer2.GetValue(Canvas.LeftProperty),
+            //    TimeSpan.FromMilliseconds(300), FillBehavior.Stop);
+            //moveLeft2.BeginTime = TimeSpan.FromMilliseconds(300);
+            //DoubleAnimation moveTop2 = new DoubleAnimation((double)cardPlayer2.GetValue(Canvas.TopProperty), TimeSpan.FromMilliseconds(300),
+            //    FillBehavior.Stop);
+            //moveTop2.BeginTime = TimeSpan.FromMilliseconds(300);
+            //moveCards.Children.Add(moveLeft1);
+            //moveCards.Children.Add(moveTop1);
+            //moveCards.Children.Add(moveLeft2);
+            //moveCards.Children.Add(moveTop2);
+            //Storyboard.SetTargetProperty(moveLeft1, new PropertyPath("(Canvas.Left)"));
+            //Storyboard.SetTargetProperty(moveTop1, new PropertyPath("(Canvas.Top)"));
+            //Storyboard.SetTargetProperty(moveLeft2, new PropertyPath("(Canvas.Left)"));
+            //Storyboard.SetTargetProperty(moveTop2, new PropertyPath("(Canvas.Top)"));
 
-
-            bDistrib.BeginStoryboard(moveCards);
-
-            
+            //bDistrib.BeginStoryboard(moveCards);
         }
     }
 }
