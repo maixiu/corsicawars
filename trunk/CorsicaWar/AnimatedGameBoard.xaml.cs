@@ -147,7 +147,12 @@ namespace CorsicaWars
             bDistrib.Child = (Viewbox)Application.Current.Resources["back1"];
             canvasBoard.Children.Add(bDistrib);
 
-            bDistrib.BeginStoryboard((Storyboard)this.Resources["DistributeStoryBoard"]);
+            Storyboard moveCards = new Storyboard();
+            DoubleAnimation move1 = new DoubleAnimation(10, 100, TimeSpan.FromSeconds(1));
+            moveCards.Children.Add(move1);
+
+
+            bDistrib.BeginStoryboard(moveCards);
 
             
         }
