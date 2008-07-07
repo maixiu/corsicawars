@@ -22,7 +22,7 @@
         <sys:Double x:Key="middleTop">200</sys:Double>
         <sys:Double x:Key="distribLeft">20</sys:Double>
         <sys:Double x:Key="distribTop">200</sys:Double>
-        <Duration x:Key="moveDistribDuration">0:0:0.5</Duration>
+        <Duration x:Key="moveDistribDuration">0:0:0.2</Duration>
         
         <Storyboard x:Key="distribCards">
             <ParallelTimeline>
@@ -30,43 +30,80 @@
                                  Duration="0" From="0" To="1"/>
                 <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="cardPlayer1"
                                  Duration="{StaticResource moveDistribDuration}"
-                                 From="{StaticResource distribLeft}" To="{StaticResource card1Left}"/>
+                                 From="{StaticResource distribLeft}" To="{StaticResource card1Left}" DecelerationRatio="1"/>
                 <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="cardPlayer1"
                                  Duration="{StaticResource moveDistribDuration}"
-                                 From="{StaticResource distribTop}" To="{StaticResource card1Top}"/>
+                                 From="{StaticResource distribTop}" To="{StaticResource card1Top}" DecelerationRatio="1"/>
             </ParallelTimeline>
-            <ParallelTimeline BeginTime="0:0:0.7">
+            <ParallelTimeline BeginTime="0:0:0.3">
                 <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="cardPlayer2"
                                  Duration="0" From="0" To="1"/>
                 <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="cardPlayer2"
                                  Duration="{StaticResource moveDistribDuration}"
-                                 From="{StaticResource distribLeft}" To="{StaticResource card2Left}"/>
+                                 From="{StaticResource distribLeft}" To="{StaticResource card2Left}" DecelerationRatio="1"/>
                 <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="cardPlayer2"
                                  Duration="{StaticResource moveDistribDuration}"
-                                 From="{StaticResource distribTop}" To="{StaticResource card2Top}"/>
+                                 From="{StaticResource distribTop}" To="{StaticResource card2Top}" DecelerationRatio="1"/>
             </ParallelTimeline>
-            <ParallelTimeline BeginTime="0:0:1.4">
+            <ParallelTimeline BeginTime="0:0:0.5">
                 <Int32Animation Storyboard.TargetProperty="(Canvas.ZIndex)" Storyboard.TargetName="distribDeck"
                                 Duration="0" From="0" To="1"/>
-                <ParallelTimeline RepeatBehavior="0:0:5">
-                    <ParallelTimeline>
+                <ParallelTimeline RepeatBehavior="25x">
+                    <ParallelTimeline BeginTime="0:0:0.1">
                         <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="distribDeck"
                                          Duration="{StaticResource moveDistribDuration}"
-                                         From="{StaticResource distribLeft}" To="{StaticResource card1Left}"/>
+                                         From="{StaticResource distribLeft}" To="{StaticResource card1Left}" DecelerationRatio="1"/>
                         <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="distribDeck"
                                          Duration="{StaticResource moveDistribDuration}"
-                                         From="{StaticResource distribTop}" To="{StaticResource card1Top}"/>
+                                         From="{StaticResource distribTop}" To="{StaticResource card1Top}" DecelerationRatio="1"/>
                     </ParallelTimeline>
-                    <ParallelTimeline BeginTime="0:0:0.7">
+                    <ParallelTimeline BeginTime="0:0:0.4">
                         <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="distribDeck"
                                          Duration="{StaticResource moveDistribDuration}"
-                                         From="{StaticResource distribLeft}" To="{StaticResource card2Left}"/>
+                                         From="{StaticResource distribLeft}" To="{StaticResource card2Left}" DecelerationRatio="1"/>
                         <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="distribDeck"
                                          Duration="{StaticResource moveDistribDuration}"
-                                         From="{StaticResource distribTop}" To="{StaticResource card2Top}"/>
+                                         From="{StaticResource distribTop}" To="{StaticResource card2Top}" DecelerationRatio="1"/>
                     </ParallelTimeline>
                 </ParallelTimeline>
             </ParallelTimeline>
+            <!--0:0:15-->
+            <ParallelTimeline BeginTime="0:0:2">
+                <ParallelTimeline>
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="distribDeck"
+                                     Duration="{StaticResource moveDistribDuration}"
+                                     From="{StaticResource distribLeft}" To="{StaticResource card1Left}" DecelerationRatio="1"/>
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="distribDeck"
+                                     Duration="{StaticResource moveDistribDuration}"
+                                     From="{StaticResource distribTop}" To="{StaticResource card1Top}" DecelerationRatio="1"/>
+                </ParallelTimeline>
+                <ParallelTimeline BeginTime="0:0:0.3">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="distribCardAnim"
+                                     Duration="0" From="1" To="0"/>
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="distribDeck"
+                                     Duration="{StaticResource moveDistribDuration}"
+                                     From="{StaticResource distribLeft}" To="{StaticResource card2Left}" DecelerationRatio="1"/>
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="distribDeck"
+                                     Duration="{StaticResource moveDistribDuration}"
+                                     From="{StaticResource distribTop}" To="{StaticResource card2Top}" DecelerationRatio="1"/>
+                </ParallelTimeline>
+                <ParallelTimeline BeginTime="0:0:0.5">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="distribDeck"
+                                     Duration="0" From="1" To="0"/>
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="distribDeck"
+                                     Duration="0" To="{StaticResource distribLeft}"/>
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="distribDeck"
+                                     Duration="0" To="{StaticResource distribTop}"/>
+                </ParallelTimeline>
+            </ParallelTimeline>
+        </Storyboard>
+        
+        <Storyboard x:Key="moveCard1">
+            
+        </Storyboard>
+
+        <Storyboard x:Key="moveCard2">
+
         </Storyboard>
     </UserControl.Resources>
     
@@ -76,13 +113,19 @@
         
         <Border x:Name="distribCardAnim" Style="{StaticResource CardStyle}"
                 Canvas.Left="{StaticResource distribLeft}" Canvas.Top="{StaticResource distribTop}" />
-        <Border x:Name="distribDeck" Style="{StaticResource CardStyle}"
+        <Border x:Name="distribDeck" Style="{StaticResource CardStyle}" BitmapEffect="{x:Null}"
                 Canvas.Left="{StaticResource distribLeft}" Canvas.Top="{StaticResource distribTop}"
-                Child="{StaticResource back1}" MouseLeftButtonUp="distribDeck_MouseLeftButtonUp">
+                Child="{StaticResource back1}" MouseLeftButtonUp="distribDeck_MouseLeftButtonUp" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <SkewTransform AngleX="10" AngleY="10"/>
+            </Border.RenderTransform>
         </Border>
         
         <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer1_MouseLeftButtonUp"
-                Canvas.Left="{StaticResource card1Left}" Canvas.Top="{StaticResource card1Top}" Opacity="0">
+                Canvas.Left="{StaticResource card1Left}" Canvas.Top="{StaticResource card1Top}" Opacity="0" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Border.RenderTransform>
         </Border>
         
         <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp"
