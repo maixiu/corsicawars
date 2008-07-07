@@ -140,6 +140,8 @@ namespace CorsicaWars
 
         private void distribDeck_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            BeginStoryboard((Storyboard)this.Resources["distribCards"]);
+
             //Border bDistrib = new Border();
             //Canvas.SetLeft(bDistrib, (double)distribDeck.GetValue(Canvas.LeftProperty));
             //Canvas.SetTop(bDistrib, (double)distribDeck.GetValue(Canvas.TopProperty));
