@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="CorsicaWars.AnimatedGameBoard"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Height="500" Width="500">
     <UserControl.Resources>
         <Style x:Key="CardStyle">
@@ -12,43 +13,81 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <sys:Double x:Key="card1Left">200</sys:Double>
+        <sys:Double x:Key="card1Top">50</sys:Double>
+        <sys:Double x:Key="card2Left">200</sys:Double>
+        <sys:Double x:Key="card2Top">350</sys:Double>
+        <sys:Double x:Key="middleLeft">200</sys:Double>
+        <sys:Double x:Key="middleTop">200</sys:Double>
+        <sys:Double x:Key="distribLeft">20</sys:Double>
+        <sys:Double x:Key="distribTop">200</sys:Double>
+        <Duration x:Key="moveDistribDuration">0:0:0.5</Duration>
+        
+        <Storyboard x:Key="distribCards">
+            <ParallelTimeline>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="cardPlayer1"
+                                 Duration="0" From="0" To="1"/>
+                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="cardPlayer1"
+                                 Duration="{StaticResource moveDistribDuration}"
+                                 From="{StaticResource distribLeft}" To="{StaticResource card1Left}"/>
+                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="cardPlayer1"
+                                 Duration="{StaticResource moveDistribDuration}"
+                                 From="{StaticResource distribTop}" To="{StaticResource card1Top}"/>
+            </ParallelTimeline>
+            <ParallelTimeline BeginTime="0:0:0.7">
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="cardPlayer2"
+                                 Duration="0" From="0" To="1"/>
+                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="cardPlayer2"
+                                 Duration="{StaticResource moveDistribDuration}"
+                                 From="{StaticResource distribLeft}" To="{StaticResource card2Left}"/>
+                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="cardPlayer2"
+                                 Duration="{StaticResource moveDistribDuration}"
+                                 From="{StaticResource distribTop}" To="{StaticResource card2Top}"/>
+            </ParallelTimeline>
+            <ParallelTimeline BeginTime="0:0:1.4">
+                <Int32Animation Storyboard.TargetProperty="(Canvas.ZIndex)" Storyboard.TargetName="distribDeck"
+                                Duration="0" From="0" To="1"/>
+                <ParallelTimeline RepeatBehavior="0:0:5">
+                    <ParallelTimeline>
+                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="distribDeck"
+                                         Duration="{StaticResource moveDistribDuration}"
+                                         From="{StaticResource distribLeft}" To="{StaticResource card1Left}"/>
+                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="distribDeck"
+                                         Duration="{StaticResource moveDistribDuration}"
+                                         From="{StaticResource distribTop}" To="{StaticResource card1Top}"/>
+                    </ParallelTimeline>
+                    <ParallelTimeline BeginTime="0:0:0.7">
+                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="distribDeck"
+                                         Duration="{StaticResource moveDistribDuration}"
+                                         From="{StaticResource distribLeft}" To="{StaticResource card2Left}"/>
+                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="distribDeck"
+                                         Duration="{StaticResource moveDistribDuration}"
+                                         From="{StaticResource distribTop}" To="{StaticResource card2Top}"/>
+                    </ParallelTimeline>
+                </ParallelTimeline>
+            </ParallelTimeline>
+        </Storyboard>
     </UserControl.Resources>
     
     <Canvas x:Name="canvasBoard">
-        <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" Canvas.Left="200" Canvas.Top="50"
-                MouseLeftButtonUp="cardPlayer1_MouseLeftButtonUp"/>
-        <Border x:Name="cardMiddle" Style="{StaticResource CardStyle}" Canvas.Left="200" Canvas.Top="200" />
-        <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}"
-                MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp" Canvas.Left="200" Canvas.Top="350" />
-        <Border x:Name="distribCardAnim" Style="{StaticResource CardStyle}" Canvas.Left="20" Canvas.Top="200" />
-        <Border x:Name="distribDeck" Style="{StaticResource CardStyle}" Canvas.Left="20" Canvas.Top="200"
-                Child="{StaticResource back1}">
-            <Border.Triggers>
-                <EventTrigger RoutedEvent="Border.MouseLeftButtonUp">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="cardPlayer1" Storyboard.TargetProperty="(Canvas.Left)"
-                                             Duration="0:0:1" By="100"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.6"
-                                             To="{Binding ElementName=cardPlayer1, Path=(Canvas.Left)}"
-                                             FillBehavior="Stop"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Duration="0:0:0.6"
-                                             To="{Binding ElementName=cardPlayer1, Path=(Canvas.Top)}"
-                                             FillBehavior="Stop"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.6"
-                                             To="{Binding ElementName=cardPlayer2, Path=(Canvas.Left)}"
-                                             BeginTime="0:0:0.6" FillBehavior="Stop"/>
-                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" Duration="0:0:0.6"
-                                             To="{Binding ElementName=cardPlayer2, Path=(Canvas.Top)}"
-                                             BeginTime="0:0:0.6" FillBehavior="Stop"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Border.Triggers>
+        <Border x:Name="cardMiddle" Style="{StaticResource CardStyle}"
+                Canvas.Left="{StaticResource middleLeft}" Canvas.Top="{StaticResource middleTop}" />
+        
+        <Border x:Name="distribCardAnim" Style="{StaticResource CardStyle}"
+                Canvas.Left="{StaticResource distribLeft}" Canvas.Top="{StaticResource distribTop}" />
+        <Border x:Name="distribDeck" Style="{StaticResource CardStyle}"
+                Canvas.Left="{StaticResource distribLeft}" Canvas.Top="{StaticResource distribTop}"
+                Child="{StaticResource back1}" MouseLeftButtonUp="distribDeck_MouseLeftButtonUp">
         </Border>
+        
+        <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer1_MouseLeftButtonUp"
+                Canvas.Left="{StaticResource card1Left}" Canvas.Top="{StaticResource card1Top}" Opacity="0">
+        </Border>
+        
+        <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp"
+                Canvas.Left="{StaticResource card2Left}" Canvas.Top="{StaticResource card2Top}" Opacity="0">
+        </Border>
+        
     </Canvas>
 </UserControl>
