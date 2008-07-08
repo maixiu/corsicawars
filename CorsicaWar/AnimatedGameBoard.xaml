@@ -116,16 +116,10 @@
         <Border x:Name="distribDeck" Style="{StaticResource CardStyle}" BitmapEffect="{x:Null}"
                 Canvas.Left="{StaticResource distribLeft}" Canvas.Top="{StaticResource distribTop}"
                 Child="{StaticResource back1}" MouseLeftButtonUp="distribDeck_MouseLeftButtonUp" RenderTransformOrigin="0.5,0.5">
-            <Border.RenderTransform>
-                <SkewTransform AngleX="10" AngleY="10"/>
-            </Border.RenderTransform>
         </Border>
         
         <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer1_MouseLeftButtonUp"
                 Canvas.Left="{StaticResource card1Left}" Canvas.Top="{StaticResource card1Top}" Opacity="0" RenderTransformOrigin="0.5,0.5">
-            <Border.RenderTransform>
-                <ScaleTransform ScaleX="1" ScaleY="1"/>
-            </Border.RenderTransform>
         </Border>
         
         <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp"
