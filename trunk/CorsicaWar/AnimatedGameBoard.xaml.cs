@@ -26,6 +26,7 @@ namespace CorsicaWars
         private Deck middleDeck;
         private Referee referee;
         private bool isCardsDistributed = false;
+        private Border disapBorder = null;
 
         public AnimatedGameBoard()
         {
@@ -45,7 +46,7 @@ namespace CorsicaWars
 
         void referee_PlayerWin(Player winPlayer)
         {
-            MessageBox.Show(string.Format("The player: {0} win this game!!!", winPlayer.Name));
+            //MessageBox.Show(string.Format("The player: {0} win this game!!!", winPlayer.Name));
         }
 
         public void CreateCardBox()
@@ -62,11 +63,11 @@ namespace CorsicaWars
 
         public void BeginGame()
         {
-            //cardPlayer1.Child = (Viewbox)Application.Current.Resources["back1"];
-            //cardPlayer2.Child = (Viewbox)Application.Current.Resources["back1"];
-            //DistributeCards();
-            //referee.BeginNewGame(player1, player2, middleDeck);
-            //RefreshCardsCount();
+            cardPlayer1.Child = (Viewbox)Application.Current.Resources["back1"];
+            cardPlayer2.Child = (Viewbox)Application.Current.Resources["back1"];
+            DistributeCards();
+            referee.BeginNewGame(player1, player2, middleDeck);
+            RefreshCardsCount();
         }
 
         private void RefreshCardsCount()
@@ -78,29 +79,29 @@ namespace CorsicaWars
 
         private void DistributeCards()
         {
-            //cardBox.ShuffleCards();
-            //player1.cardDeck.Cards.Clear();
-            //player2.cardDeck.Cards.Clear();
+            cardBox.ShuffleCards();
+            player1.cardDeck.Cards.Clear();
+            player2.cardDeck.Cards.Clear();
 
-            //for (int i = 0; i < cardBox.Cards.Count - 1; i += 2)
-            //{
-            //    player1.cardDeck.AddCard(cardBox.Cards[i]);
-            //    player2.cardDeck.AddCard(cardBox.Cards[i + 1]);
-            //}
+            for (int i = 0; i < cardBox.Cards.Count - 1; i += 2)
+            {
+                player1.cardDeck.AddCard(cardBox.Cards[i]);
+                player2.cardDeck.AddCard(cardBox.Cards[i + 1]);
+            }
         }
 
         private void PlayerPlay(Player play)
         {
-            //try
-            //{
-            //    referee.PlayCard(play);
-            //    RefreshMiddleCard();
-            //    RefreshCardsCount();
-            //}
-            //catch (RefereeWrongPlayerException)
-            //{
-            //    MessageBox.Show("It's not your turn !");
-            //}
+            try
+            {
+                referee.PlayCard(play);
+                //RefreshMiddleCard();
+                //RefreshCardsCount();
+            }
+            catch (RefereeWrongPlayerException)
+            {
+                MessageBox.Show("It's not your turn !");
+            }
         }
 
         private void RefreshMiddleCard()
@@ -129,44 +130,49 @@ namespace CorsicaWars
             //}
         }
 
+        private Viewbox GetLastMiddleCard()
+        {
+            Card last = middleDeck.Cards.Last();
+            string key = string.Format("{0}_{1}", last.Color.ToString(), last.Type.ToString()).ToLower();
+
+            return (Viewbox)Application.Current.Resources[key];
+        }
+
         private void AnimateCard1()
         {
-            Storyboard moveCard = new Storyboard();
-
             Border cardMove = new Border();
             cardMove.Width = 100;
             cardMove.Height = 100;
+            cardMove.RenderTransform = new ScaleTransform(1, 1);
+            cardMove.RenderTransformOrigin = new Point(0.5, 0.5);
             cardMove.Child = (Viewbox)Application.Current.Resources["back1"];
             canvasBoard.Children.Add(cardMove);
             Canvas.SetLeft(cardMove, Canvas.GetLeft(cardPlayer1));
             Canvas.SetTop(cardMove, Canvas.GetTop(cardPlayer1));
 
             DoubleAnimation moveForward = new DoubleAnimation(Canvas.GetTop(cardMiddle), new Duration(TimeSpan.FromMilliseconds(500)));
-            moveCard.Children.Add(moveForward);
-            Storyboard.SetTargetProperty(moveForward, new PropertyPath("(Canvas.Top)"));
 
-            DoubleAnimation shrink = new DoubleAnimation(0.5, new Duration(TimeSpan.FromMilliseconds(200)));
-            shrink.BeginTime = TimeSpan.FromMilliseconds(0);
-            moveCard.Children.Add(shrink);
-            Storyboard.SetTargetProperty(shrink, new PropertyPath("(RenderTransform.ScaleX)"));
+            DoubleAnimation disappear = new DoubleAnimation(0, new Duration(TimeSpan.FromMilliseconds(2000)));
+            disappear.BeginTime = TimeSpan.FromMilliseconds(500);
+            //disappear.Completed += new EventHandler(disappear_Completed);
 
-            //DoubleAnimation shrink = new DoubleAnimation(50, new Duration(TimeSpan.FromMilliseconds(200)));
-            //shrink.BeginTime = TimeSpan.FromMilliseconds(0);
-            //moveCard.Children.Add(shrink);
-            //Storyboard.SetTargetProperty(shrink, new PropertyPath("Width"));
+            DoubleAnimation appear = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(1000)));
 
-            //DoubleAnimation grow = new DoubleAnimation(100, new Duration(TimeSpan.FromMilliseconds(200)));
-            //grow.BeginTime = TimeSpan.FromMilliseconds(700);
-            //moveCard.Children.Add(grow);
-            //Storyboard.SetTargetProperty(grow, new PropertyPath("Width"));
+            disapBorder = cardMove;
+            cardMove.BeginAnimation(Canvas.TopProperty, moveForward);
+            cardMove.BeginAnimation(Border.OpacityProperty, disappear);
+            cardMove.BeginAnimation(Border.OpacityProperty, appear);
+        }
 
-            cardMove.BeginStoryboard(moveCard);
+        void disappear_Completed(object sender, EventArgs e)
+        {
+            disapBorder.Child = GetLastMiddleCard();
         }
 
         private void cardPlayer1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            PlayerPlay(player1);
             AnimateCard1();
-            //PlayerPlay(player1);
 
         }
 
@@ -179,6 +185,7 @@ namespace CorsicaWars
         {
             if (!isCardsDistributed)
             {
+                BeginGame();
                 BeginStoryboard((Storyboard)this.Resources["distribCards"]);
                 isCardsDistributed = true;
             }
