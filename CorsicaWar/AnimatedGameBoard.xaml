@@ -108,7 +108,7 @@
     </UserControl.Resources>
     
     <Canvas x:Name="canvasBoard">
-        <Border x:Name="cardMiddle" Style="{StaticResource CardStyle}"
+        <Canvas x:Name="cardMiddle" Style="{StaticResource CardStyle}"
                 Canvas.Left="{StaticResource middleLeft}" Canvas.Top="{StaticResource middleTop}" />
         
         <Border x:Name="distribCardAnim" Style="{StaticResource CardStyle}"
@@ -119,12 +119,26 @@
         </Border>
         
         <Border x:Name="cardPlayer1" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer1_MouseLeftButtonUp"
-                Canvas.Left="{StaticResource card1Left}" Canvas.Top="{StaticResource card1Top}" Opacity="0" RenderTransformOrigin="0.5,0.5">
+                Canvas.Left="{StaticResource card1Left}" Canvas.Top="{StaticResource card1Top}" Opacity="0">
         </Border>
         
         <Border x:Name="cardPlayer2" Style="{StaticResource CardStyle}" MouseLeftButtonUp="cardPlayer2_MouseLeftButtonUp"
                 Canvas.Left="{StaticResource card2Left}" Canvas.Top="{StaticResource card2Top}" Opacity="0">
         </Border>
+
+        <Button x:Name="btnGetMiddle" Height="30" Padding="5" Canvas.Left="320" Canvas.Top="230"
+                Content="Get the cards !" Click="btnGetMiddle_Click" Visibility="Hidden">
+            <Button.Resources>
+                <Storyboard x:Key="show">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                </Storyboard>
+                <Storyboard x:Key="hide">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.2"/>
+                </Storyboard>
+            </Button.Resources>
+        </Button>
+
+        <TextBlock Canvas.ZIndex="3" Text="Not your turn !" Canvas.Left="59.994" Canvas.Top="93.324"/>
         
     </Canvas>
 </UserControl>

@@ -22,6 +22,7 @@ namespace CorsicaWars
     {
         public Player player1 { get; private set; }
         public Player player2 { get; private set; }
+        private Player playerwin = null;
         private Deck cardBox;
         private Deck middleDeck;
         private Referee referee;
@@ -33,7 +34,8 @@ namespace CorsicaWars
             player1 = new Player("Masahiro");
             player2 = new Player("Miyazaki");
             referee = new Referee();
-            referee.PlayerWin += new PlayerWinEventHandler(referee_PlayerWin);
+            referee.PlayerWin += new PlayerEventHandler(referee_PlayerWin);
+            referee.PlayerGetMiddle += new PlayerEventHandler(referee_PlayerGetMiddle);
             middleDeck = new Deck();
 
             CreateCardBox();
@@ -44,9 +46,16 @@ namespace CorsicaWars
             distribCardAnim.Child = (Viewbox)Application.Current.Resources["back1"];
         }
 
+        void referee_PlayerGetMiddle(Player winPlayer)
+        {
+            playerwin = winPlayer;
+            btnGetMiddle.Visibility = Visibility.Visible;
+            btnGetMiddle.BeginStoryboard((Storyboard)btnGetMiddle.Resources["show"]);
+        }
+
         void referee_PlayerWin(Player winPlayer)
         {
-            //MessageBox.Show(string.Format("The player: {0} win this game!!!", winPlayer.Name));
+            MessageBox.Show(string.Format("The player: {0} win this game!!!", winPlayer.Name));
         }
 
         public void CreateCardBox()
@@ -90,95 +99,105 @@ namespace CorsicaWars
             }
         }
 
-        private void PlayerPlay(Player play)
+        private bool PlayerPlay(Player play)
         {
             try
             {
                 referee.PlayCard(play);
-                //RefreshMiddleCard();
                 //RefreshCardsCount();
+                return true;
             }
             catch (RefereeWrongPlayerException)
             {
                 MessageBox.Show("It's not your turn !");
             }
-        }
 
-        private void RefreshMiddleCard()
-        {
-            //if (middleDeck.Cards.Count > 0)
-            //{
-            //    Card last = middleDeck.Cards.Last();
-            //    string key = string.Format("{0}_{1}", last.Color.ToString(), last.Type.ToString()).ToLower();
-
-            //    if (Application.Current.Resources.Contains(key))
-            //    {
-            //        cardMiddle.Visibility = Visibility.Visible;
-            //        cardMiddle.Child = (Viewbox)Application.Current.Resources[key];
-            //    }
-            //    else
-            //    {
-            //        TextBlock b = new TextBlock();
-            //        b.Text = "The image doesn't exists.";
-            //        b.Background = Brushes.Tomato;
-            //        cardMiddle.Child = b;
-            //    }
-            //}
-            //else
-            //{
-            //    cardMiddle.Visibility = Visibility.Hidden;
-            //}
+            return false;
         }
 
         private Viewbox GetLastMiddleCard()
         {
-            Card last = middleDeck.Cards.Last();
-            string key = string.Format("{0}_{1}", last.Color.ToString(), last.Type.ToString()).ToLower();
+            if (middleDeck.Cards.Count > 0)
+            {
+                Card last = middleDeck.Cards.Last();
+                string key = string.Format("{0}_{1}", last.Color.ToString(), last.Type.ToString()).ToLower();
 
-            return (Viewbox)Application.Current.Resources[key];
+                return (Viewbox)Application.Current.Resources[key];
+            }
+            return null;
         }
 
-        private void AnimateCard1()
+        private void AnimateCard(Border player)
         {
+            Random rand = new Random();
+            int angle = rand.Next(0, 46);
+
+            RotateTransform rotateTrans = new RotateTransform(0);
+
             Border cardMove = new Border();
-            cardMove.Width = 100;
-            cardMove.Height = 100;
-            cardMove.RenderTransform = new ScaleTransform(1, 1);
+            cardMove.Width = player.Width;
+            cardMove.Height = player.Height;
             cardMove.RenderTransformOrigin = new Point(0.5, 0.5);
+            cardMove.RenderTransform = rotateTrans;
             cardMove.Child = (Viewbox)Application.Current.Resources["back1"];
             canvasBoard.Children.Add(cardMove);
-            Canvas.SetLeft(cardMove, Canvas.GetLeft(cardPlayer1));
-            Canvas.SetTop(cardMove, Canvas.GetTop(cardPlayer1));
+            Canvas.SetLeft(cardMove, Canvas.GetLeft(player));
+            Canvas.SetTop(cardMove, Canvas.GetTop(player));
 
-            DoubleAnimation moveForward = new DoubleAnimation(Canvas.GetTop(cardMiddle), new Duration(TimeSpan.FromMilliseconds(500)));
-
-            DoubleAnimation disappear = new DoubleAnimation(0, new Duration(TimeSpan.FromMilliseconds(2000)));
-            disappear.BeginTime = TimeSpan.FromMilliseconds(500);
-            //disappear.Completed += new EventHandler(disappear_Completed);
-
-            DoubleAnimation appear = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(1000)));
+            Border newCard = new Border();
+            newCard.Width = cardMiddle.Width;
+            newCard.Height = cardMiddle.Height;
+            newCard.Opacity = 0;
+            newCard.RenderTransformOrigin = new Point(0.5, 0.5);
+            newCard.RenderTransform = new RotateTransform(angle);
+            newCard.Child = GetLastMiddleCard();
+            cardMiddle.Children.Add(newCard);
+            Canvas.SetLeft(newCard, 0);
+            Canvas.SetTop(newCard, 0);
 
             disapBorder = cardMove;
+
+            DoubleAnimation moveForward = new DoubleAnimation(Canvas.GetTop(cardMiddle), new Duration(TimeSpan.FromMilliseconds(200)));
+            moveForward.DecelerationRatio = 1;
+            DoubleAnimation rotate = new DoubleAnimation(angle, new Duration(TimeSpan.FromMilliseconds(200)));
+            rotate.DecelerationRatio = 1;
+            
+            DoubleAnimation disappear = new DoubleAnimation(0, new Duration(TimeSpan.FromMilliseconds(200)));
+            disappear.BeginTime = TimeSpan.FromMilliseconds(0200);
+            disappear.Completed += new EventHandler(disappear_Completed);
+
+            DoubleAnimation appear = new DoubleAnimation(1, new Duration(TimeSpan.FromMilliseconds(100)));
+            appear.BeginTime = TimeSpan.FromMilliseconds(400);
+
             cardMove.BeginAnimation(Canvas.TopProperty, moveForward);
-            cardMove.BeginAnimation(Border.OpacityProperty, disappear);
-            cardMove.BeginAnimation(Border.OpacityProperty, appear);
+            rotateTrans.BeginAnimation(RotateTransform.AngleProperty, rotate);
+            if (middleDeck.Cards.Count > 0)
+            {
+                cardMove.BeginAnimation(Border.OpacityProperty, disappear);
+                newCard.BeginAnimation(Border.OpacityProperty, appear);
+            }
         }
 
         void disappear_Completed(object sender, EventArgs e)
         {
-            disapBorder.Child = GetLastMiddleCard();
+            canvasBoard.Children.Remove(disapBorder);
         }
 
         private void cardPlayer1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            PlayerPlay(player1);
-            AnimateCard1();
+            if (PlayerPlay(player1))
+            {
+                AnimateCard(cardPlayer1);
+            }
 
         }
 
         private void cardPlayer2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //PlayerPlay(player2);
+            if (PlayerPlay(player2))
+            {
+                AnimateCard(cardPlayer2);
+            }
         }
 
         private void distribDeck_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -189,6 +208,55 @@ namespace CorsicaWars
                 BeginStoryboard((Storyboard)this.Resources["distribCards"]);
                 isCardsDistributed = true;
             }
+        }
+
+        private void DeleteMiddleCards()
+        {
+            double begin = 0;
+            UIElement elem;
+            DoubleAnimation anim;
+            DoubleAnimation anim2;
+            double top;
+
+            if (playerwin == player1)
+            {
+                top = Canvas.GetTop(cardPlayer1) - Canvas.GetTop(cardMiddle);
+            }
+            else
+            {
+                top = Canvas.GetTop(cardPlayer2) - Canvas.GetTop(cardMiddle);
+            }
+
+            for (int i = cardMiddle.Children.Count - 1; i >= 0; i--)
+            {
+                elem = cardMiddle.Children[i];
+                anim = new DoubleAnimation(0, new Duration(TimeSpan.FromMilliseconds(100)));
+                anim2 = new DoubleAnimation(top, new Duration(TimeSpan.FromMilliseconds(100)));
+                anim.BeginTime = TimeSpan.FromMilliseconds(begin);
+                anim2.BeginTime = TimeSpan.FromMilliseconds(begin);
+                elem.BeginAnimation(UIElement.OpacityProperty, anim);
+                elem.BeginAnimation(Canvas.TopProperty, anim2);
+                begin += 100;
+            }
+
+            elem = cardMiddle.Children[0];
+            anim = new DoubleAnimation(0, 0, new Duration(TimeSpan.FromMilliseconds(1000)));
+            anim.BeginTime = TimeSpan.FromMilliseconds(begin);
+            anim.Completed += new EventHandler(anim_Completed);
+            elem.BeginAnimation(Canvas.LeftProperty, anim);
+        }
+
+        void anim_Completed(object sender, EventArgs e)
+        {
+            cardMiddle.Children.Clear();
+        }
+
+        private void btnGetMiddle_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteMiddleCards();
+            referee.GetMiddleCards();
+            btnGetMiddle.BeginStoryboard((Storyboard)btnGetMiddle.Resources["hide"]);
+            btnGetMiddle.Visibility = Visibility.Hidden;
         }
     }
 }

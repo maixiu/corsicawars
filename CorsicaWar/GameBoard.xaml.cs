@@ -31,7 +31,7 @@ namespace CorsicaWars
             player1 = new Player("Masahiro");
             player2 = new Player("Miyazaki");
             referee = new Referee();
-            referee.PlayerWin += new PlayerWinEventHandler(referee_PlayerWin);
+            referee.PlayerWin += new PlayerEventHandler(referee_PlayerWin);
             middleDeck = new Deck();
 
             CreateCardBox();
