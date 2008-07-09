@@ -5,11 +5,12 @@ using System.Text;
 
 namespace CorsicaWars
 {
-    public delegate void PlayerWinEventHandler(Player winPlayer);
+    public delegate void PlayerEventHandler(Player winPlayer);
 
     public class Referee
     {
-        public event PlayerWinEventHandler PlayerWin;
+        public event PlayerEventHandler PlayerWin;
+        public event PlayerEventHandler PlayerGetMiddle;
 
         public static Dictionary<CardType, short> PowerCardList { get; private set; }
         private Player player1 = null;
@@ -52,6 +53,7 @@ namespace CorsicaWars
                 OnPlayerWin(currentPlayer);
                 return;
             }
+
             lastCard = PlayerTakeCard(player);
             middleDeck.AddCard(lastCard.Value);
 
@@ -71,8 +73,13 @@ namespace CorsicaWars
 
             if (nextNbChance == 0)
             {
-                PlayerGetMiddleDeck(currentPlayer);
+                OnPlayerGetMiddle(currentPlayer);
             }
+        }
+
+        public void GetMiddleCards()
+        {
+            PlayerGetMiddleDeck(currentPlayer);
         }
 
         public void TapDeck(Player playerAttack)
@@ -126,6 +133,14 @@ namespace CorsicaWars
             if (PlayerWin != null)
             {
                 PlayerWin(winPlayer);
+            }
+        }
+
+        protected virtual void OnPlayerGetMiddle(Player winPlayer)
+        {
+            if (PlayerGetMiddle != null)
+            {
+                PlayerGetMiddle(winPlayer);
             }
         }
     }
