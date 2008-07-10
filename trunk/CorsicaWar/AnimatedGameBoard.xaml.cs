@@ -109,10 +109,17 @@ namespace CorsicaWars
             }
             catch (RefereeWrongPlayerException)
             {
-                MessageBox.Show("It's not your turn !");
+                ShowMessage("Not your turn !");
             }
 
             return false;
+        }
+
+        private void ShowMessage(string message)
+        {
+            Canvas.SetZIndex(tbMessage, 3);
+            tbMessage.Text = message;
+            tbMessage.BeginStoryboard((Storyboard)tbMessage.Resources["ShowMessage"]);
         }
 
         private Viewbox GetLastMiddleCard()
@@ -257,6 +264,11 @@ namespace CorsicaWars
             referee.GetMiddleCards();
             btnGetMiddle.BeginStoryboard((Storyboard)btnGetMiddle.Resources["hide"]);
             btnGetMiddle.Visibility = Visibility.Hidden;
+        }
+
+        private void ShowMessage_Completed(object sender, EventArgs e)
+        {
+            Canvas.SetZIndex(tbMessage, -1);
         }
     }
 }
