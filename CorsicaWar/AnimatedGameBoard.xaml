@@ -138,7 +138,20 @@
             </Button.Resources>
         </Button>
 
-        <TextBlock Canvas.ZIndex="3" Text="Not your turn !" Canvas.Left="59.994" Canvas.Top="93.324"/>
-        
+        <TextBlock x:Name="tbMessage" Canvas.ZIndex="-1" Text="Not your turn !" Canvas.Left="50" Canvas.Top="230"
+                   FontSize="40" FontFamily="Berlin Sans FB" Opacity="0">
+            <TextBlock.BitmapEffect>
+                <OuterGlowBitmapEffect GlowColor="WhiteSmoke" GlowSize="25" Opacity="0.9"/>
+            </TextBlock.BitmapEffect>
+            <TextBlock.Resources>
+                <Storyboard x:Key="ShowMessage" Completed="ShowMessage_Completed">
+                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="20" To="150" Duration="0:0:0.2"/>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                    <ParallelTimeline BeginTime="0:0:1">
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+                    </ParallelTimeline>
+                </Storyboard>
+            </TextBlock.Resources>
+        </TextBlock>
     </Canvas>
 </UserControl>
