@@ -115,11 +115,34 @@ namespace CorsicaWars
             return false;
         }
 
+        private void AnimateMessage()
+        {
+            Storyboard sb = new Storyboard();
+
+            double middleLeft = Math.Abs((Canvas.GetLeft(cardMiddle) + cardMiddle.ActualWidth / 2) - tbMessage.ActualWidth / 2);
+            double fromLeft = middleLeft - (tbMessage.ActualWidth / 2);
+            DoubleAnimation move = new DoubleAnimation(fromLeft, middleLeft, new Duration(TimeSpan.FromMilliseconds(200)));
+            Storyboard.SetTargetProperty(move, new PropertyPath("(Canvas.Left)"));
+
+            DoubleAnimation appear = new DoubleAnimation(0, 1, new Duration(TimeSpan.FromMilliseconds(200)));
+            Storyboard.SetTargetProperty(appear, new PropertyPath("Opacity"));
+            
+            DoubleAnimation disappear = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(200)));
+            disappear.BeginTime = TimeSpan.FromMilliseconds(1000);
+            Storyboard.SetTargetProperty(disappear, new PropertyPath("Opacity"));
+
+            sb.Children.Add(move);
+            sb.Children.Add(appear);
+            sb.Children.Add(disappear);
+
+            tbMessage.BeginStoryboard(sb);
+        }
+
         private void ShowMessage(string message)
         {
             Canvas.SetZIndex(tbMessage, 3);
             tbMessage.Text = message;
-            tbMessage.BeginStoryboard((Storyboard)tbMessage.Resources["ShowMessage"]);
+            AnimateMessage();
         }
 
         private Viewbox GetLastMiddleCard()
@@ -251,6 +274,9 @@ namespace CorsicaWars
             anim.BeginTime = TimeSpan.FromMilliseconds(begin);
             anim.Completed += new EventHandler(anim_Completed);
             elem.BeginAnimation(Canvas.LeftProperty, anim);
+
+            btnGetMiddle.BeginStoryboard((Storyboard)btnGetMiddle.Resources["hide"]);
+            btnGetMiddle.Visibility = Visibility.Hidden;
         }
 
         void anim_Completed(object sender, EventArgs e)
@@ -262,13 +288,23 @@ namespace CorsicaWars
         {
             DeleteMiddleCards();
             referee.GetMiddleCards();
-            btnGetMiddle.BeginStoryboard((Storyboard)btnGetMiddle.Resources["hide"]);
-            btnGetMiddle.Visibility = Visibility.Hidden;
         }
 
         private void ShowMessage_Completed(object sender, EventArgs e)
         {
             Canvas.SetZIndex(tbMessage, -1);
+        }
+
+        private void cardMiddle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (referee.TapDeck(player1))
+            {
+                DeleteMiddleCards();
+            }
+            else
+            {
+                ShowMessage("Fail !");
+            }
         }
     }
 }

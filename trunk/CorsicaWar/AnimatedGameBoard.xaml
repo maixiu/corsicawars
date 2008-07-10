@@ -109,7 +109,8 @@
     
     <Canvas x:Name="canvasBoard">
         <Canvas x:Name="cardMiddle" Style="{StaticResource CardStyle}"
-                Canvas.Left="{StaticResource middleLeft}" Canvas.Top="{StaticResource middleTop}" />
+                Canvas.Left="{StaticResource middleLeft}" Canvas.Top="{StaticResource middleTop}"
+                MouseLeftButtonDown="cardMiddle_MouseLeftButtonDown"/>
         
         <Border x:Name="distribCardAnim" Style="{StaticResource CardStyle}"
                 Canvas.Left="{StaticResource distribLeft}" Canvas.Top="{StaticResource distribTop}" />

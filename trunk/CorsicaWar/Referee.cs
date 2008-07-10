@@ -82,16 +82,18 @@ namespace CorsicaWars
             PlayerGetMiddleDeck(currentPlayer);
         }
 
-        public void TapDeck(Player playerAttack)
+        public bool TapDeck(Player playerAttack)
         {
             if (middleDeck.Cards.Count >= 2 &&
                 middleDeck.Cards.Last().Type == middleDeck.Cards[middleDeck.Cards.Count - 2].Type)
             {
                 PlayerGetMiddleDeck(playerAttack);
+                return true;
             }
             else
             {
                 PunishPlayer(playerAttack);
+                return false;
             }
         }
 
