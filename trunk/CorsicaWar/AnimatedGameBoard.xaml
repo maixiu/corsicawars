@@ -108,6 +108,9 @@
     </UserControl.Resources>
     
     <Canvas x:Name="canvasBoard">
+        <Canvas.Background>
+            <ImageBrush ImageSource="F:\lol.PNG" TileMode="Tile" Viewport="0,0 0.01,0.01"/>
+        </Canvas.Background>
         <Canvas x:Name="cardMiddle" Style="{StaticResource CardStyle}"
                 Canvas.Left="{StaticResource middleLeft}" Canvas.Top="{StaticResource middleTop}"
                 MouseLeftButtonDown="cardMiddle_MouseLeftButtonDown"/>
@@ -144,15 +147,6 @@
             <TextBlock.BitmapEffect>
                 <OuterGlowBitmapEffect GlowColor="WhiteSmoke" GlowSize="25" Opacity="0.9"/>
             </TextBlock.BitmapEffect>
-            <TextBlock.Resources>
-                <Storyboard x:Key="ShowMessage" Completed="ShowMessage_Completed">
-                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="20" To="150" Duration="0:0:0.2"/>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
-                    <ParallelTimeline BeginTime="0:0:1">
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
-                    </ParallelTimeline>
-                </Storyboard>
-            </TextBlock.Resources>
         </TextBlock>
     </Canvas>
 </UserControl>
