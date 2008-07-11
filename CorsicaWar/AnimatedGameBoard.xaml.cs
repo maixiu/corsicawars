@@ -76,14 +76,6 @@ namespace CorsicaWars
             cardPlayer2.Child = (Viewbox)Application.Current.Resources["back1"];
             DistributeCards();
             referee.BeginNewGame(player1, player2, middleDeck);
-            RefreshCardsCount();
-        }
-
-        private void RefreshCardsCount()
-        {
-            //tbPlay1NbCards.Text = player1.cardDeck.Cards.Count.ToString();
-            //tbPlay2NbCards.Text = player2.cardDeck.Cards.Count.ToString();
-            //tbMiddleNbCards.Text = middleDeck.Cards.Count.ToString();
         }
 
         private void DistributeCards()
@@ -104,7 +96,6 @@ namespace CorsicaWars
             try
             {
                 referee.PlayCard(play);
-                //RefreshCardsCount();
                 return true;
             }
             catch (RefereeWrongPlayerException)
@@ -118,7 +109,9 @@ namespace CorsicaWars
         private void AnimateMessage()
         {
             Storyboard sb = new Storyboard();
+            sb.Completed += new EventHandler(ShowMessage_Completed);
 
+            tbMessage.UpdateLayout();
             double middleLeft = Math.Abs((Canvas.GetLeft(cardMiddle) + cardMiddle.ActualWidth / 2) - tbMessage.ActualWidth / 2);
             double fromLeft = middleLeft - (tbMessage.ActualWidth / 2);
             DoubleAnimation move = new DoubleAnimation(fromLeft, middleLeft, new Duration(TimeSpan.FromMilliseconds(200)));
