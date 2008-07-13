@@ -108,9 +108,9 @@
     </UserControl.Resources>
     
     <Canvas x:Name="canvasBoard">
-        <Canvas.Background>
+        <!--<Canvas.Background>
             <ImageBrush ImageSource="F:\lol.PNG" TileMode="Tile" Viewport="0,0 0.01,0.01"/>
-        </Canvas.Background>
+        </Canvas.Background>-->
         <Canvas x:Name="cardMiddle" Style="{StaticResource CardStyle}"
                 Canvas.Left="{StaticResource middleLeft}" Canvas.Top="{StaticResource middleTop}"
                 MouseLeftButtonDown="cardMiddle_MouseLeftButtonDown"/>
