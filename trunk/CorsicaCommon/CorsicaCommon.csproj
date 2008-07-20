@@ -8,7 +8,7 @@
     <ProjectGuid>{C1BCDD92-55EA-452E-8BCC-CC6DC2B4B06A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CorsicaCommon</RootNamespace>
+    <RootNamespace>Corsica.Common</RootNamespace>
     <AssemblyName>CorsicaCommon</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

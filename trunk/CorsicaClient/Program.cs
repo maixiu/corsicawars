@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorsicaClient
+namespace Corsica.Client
 {
     class Program
     {
