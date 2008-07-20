@@ -8,7 +8,7 @@
     <ProjectGuid>{844EB4C8-F3C6-4530-81AF-DB2288A2CF54}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CorsicaClient</RootNamespace>
+    <RootNamespace>Corsica.Client</RootNamespace>
     <AssemblyName>CorsicaClient</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
