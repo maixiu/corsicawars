@@ -11,22 +11,28 @@ namespace Corsica.Client
     {
         static void Main(string[] args)
         {
+            string line = string.Empty;
+
             Callback lol = new Callback();
             CorsicaServerClient client = new CorsicaServerClient(new System.ServiceModel.InstanceContext(lol));
-            client.SendMessage("Helllo dude.");
-            Console.ReadKey();
+
+            do
+            {
+                line = Console.ReadLine();
+                client.SendMessage(line);
+            }
+            while (line != "quit");
             client.Close();
         }
     }
 
     class Callback : ICorsicaServerCallback
     {
-
         #region ICorsicaServerCallback Members
 
         public void OnMessageReceived(string message)
         {
-            Console.WriteLine("J'ai recu: " + message);
+            Console.WriteLine(string.Format("Recu: {0}", message));
         }
 
         #endregion
