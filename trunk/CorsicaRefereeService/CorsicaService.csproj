@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{422F319C-BDDD-430F-B90B-90E08E840A54}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{30FF21D4-B6DE-43E5-B9B1-5C2860018389}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Corsica.Server</RootNamespace>
-    <AssemblyName>CorsicaServer</AssemblyName>
+    <RootNamespace>Corsica.Service</RootNamespace>
+    <AssemblyName>CorsicaService</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -49,17 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="RefereeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CorsicaRefereeService\CorsicaService.csproj">
-      <Project>{30FF21D4-B6DE-43E5-B9B1-5C2860018389}</Project>
-      <Name>CorsicaService</Name>
-    </ProjectReference>
+    <Compile Include="RefereeContract.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
