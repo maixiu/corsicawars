@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Corsica.Common;
-
 namespace Corsica.Client
 {
     class Program
@@ -13,28 +11,15 @@ namespace Corsica.Client
         {
             string line = string.Empty;
 
-            Callback lol = new Callback();
-            CorsicaServerClient client = new CorsicaServerClient(new System.ServiceModel.InstanceContext(lol));
+            RefereeContractClient client = new RefereeContractClient();
 
             do
             {
                 line = Console.ReadLine();
-                client.SendMessage(line);
+                client.Hello(line);
             }
             while (line != "quit");
             client.Close();
         }
-    }
-
-    class Callback : ICorsicaServerCallback
-    {
-        #region ICorsicaServerCallback Members
-
-        public void OnMessageReceived(string message)
-        {
-            Console.WriteLine(string.Format("Recu: {0}", message));
-        }
-
-        #endregion
     }
 }
