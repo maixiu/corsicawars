@@ -6,15 +6,11 @@ using System.ServiceModel;
 
 namespace Corsica.Service
 {
+    [ServiceBehavior(
+        InstanceContextMode=InstanceContextMode.PerSession,
+        ConcurrencyMode=ConcurrencyMode.Single)]
     public class RefereeService : IRefereeContract
     {
-        #region IRefereeContract Members
 
-        public string Hello(string message)
-        {
-            return "you sent :" + message;
-        }
-
-        #endregion
     }
 }
