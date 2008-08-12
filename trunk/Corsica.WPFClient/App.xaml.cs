@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace CorsicaWars
+namespace Corsica.WPFClient
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C# Express 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorsicaWars", "CorsicaWar\CorsicaWars.csproj", "{DE18B5D9-224E-4CF9-A812-E957F15B1A53}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corsica.Game", "Corsica.Game\Corsica.Game.csproj", "{D41789B4-068A-4A64-ADFB-1DAC06989F87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corsica.Service", "Corsica.RefereeService\Corsica.Service.csproj", "{30FF21D4-B6DE-43E5-B9B1-5C2860018389}"
@@ -11,16 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corsica.Server", "Corsica.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corsica.Client", "Corsica.Client\Corsica.Client.csproj", "{844EB4C8-F3C6-4530-81AF-DB2288A2CF54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corsica.WPFClient", "Corsica.WPFClient\Corsica.WPFClient.csproj", "{47B4905D-1741-4280-8BF0-34981C87A268}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DE18B5D9-224E-4CF9-A812-E957F15B1A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE18B5D9-224E-4CF9-A812-E957F15B1A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE18B5D9-224E-4CF9-A812-E957F15B1A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE18B5D9-224E-4CF9-A812-E957F15B1A53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D41789B4-068A-4A64-ADFB-1DAC06989F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D41789B4-068A-4A64-ADFB-1DAC06989F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D41789B4-068A-4A64-ADFB-1DAC06989F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +33,10 @@ Global
 		{844EB4C8-F3C6-4530-81AF-DB2288A2CF54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{844EB4C8-F3C6-4530-81AF-DB2288A2CF54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{844EB4C8-F3C6-4530-81AF-DB2288A2CF54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47B4905D-1741-4280-8BF0-34981C87A268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B4905D-1741-4280-8BF0-34981C87A268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47B4905D-1741-4280-8BF0-34981C87A268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B4905D-1741-4280-8BF0-34981C87A268}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
