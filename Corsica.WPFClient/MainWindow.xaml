@@ -1,7 +1,7 @@
-﻿<Window x:Class="CorsicaWars.MainWindow"
+﻿<Window x:Class="Corsica.WPFClient.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:CorsicaWars"
+    xmlns:local="clr-namespace:Corsica.WPFClient"
     Title="Corsica Wars" Height="457.28" Width="440.132">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">

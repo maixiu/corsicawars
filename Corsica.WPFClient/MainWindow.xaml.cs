@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CorsicaWars
+namespace Corsica.WPFClient
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
@@ -26,8 +26,8 @@ namespace CorsicaWars
 
         private void miAbout_Click(object sender, RoutedEventArgs e)
         {
-            About aboutWin = new About();
-            aboutWin.ShowDialog();
+            AboutCorsica about = new AboutCorsica();
+            about.ShowDialog();
         }
 
         private void miExit_Click(object sender, RoutedEventArgs e)
