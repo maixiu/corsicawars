@@ -1,1 +1,1 @@
-SvcUtil.exe 
+SvcUtil.exe http://localhost:8001/CorsicaWars?wsdl

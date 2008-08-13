@@ -20,17 +20,20 @@ public interface IRefereeContract
 
     [System.ServiceModel.OperationContractAttribute(IsOneWay = true, IsTerminating = true, IsInitiating = false, Action = "CorsicaWars/IRefereeContract/Unsubscribe")]
     void Unsubscribe();
-
-    [System.ServiceModel.OperationContractAttribute(IsInitiating = false, Action = "CorsicaWars/IRefereeContract/PlayCard", ReplyAction = "CorsicaWars/IRefereeContract/PlayCardResponse")]
-    void PlayCard();
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 public interface IRefereeContractCallback
 {
 
-    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "CorsicaWars/IRefereeContract/OnCardPlayed")]
-    void OnCardPlayed(string user);
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "CorsicaWars/IRefereeContract/WaitForPlayer")]
+    void WaitForPlayer();
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "CorsicaWars/IRefereeContract/GameStarts")]
+    void GameStarts();
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "CorsicaWars/IRefereeContract/GameAborded")]
+    void GameAborded();
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -76,10 +79,5 @@ public partial class RefereeContractClient : System.ServiceModel.DuplexClientBas
     public void Unsubscribe()
     {
         base.Channel.Unsubscribe();
-    }
-
-    public void PlayCard()
-    {
-        base.Channel.PlayCard();
     }
 }

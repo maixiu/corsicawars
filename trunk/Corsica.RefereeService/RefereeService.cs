@@ -17,7 +17,7 @@ namespace Corsica.Service
         private string playerName = string.Empty;
 
         #region IRefereeContract Members
-        
+
         public void Subscribe(string playerName)
         {
             if (!clientList.ContainsKey(playerName))
@@ -27,6 +27,18 @@ namespace Corsica.Service
                 RefereeService.clientList.Add(playerName, callback);
 
                 Console.WriteLine("Player subscribe: " + playerName);
+
+                if (RefereeService.clientList.Count > 1)
+                {
+                    foreach (IRefereeConcractCallback call in RefereeService.clientList.Values)
+                    {
+                        call.GameStarts();
+                    }
+                }
+                else
+                {
+                    callback.WaitForPlayer();
+                }
             }
             else
             {
@@ -40,10 +52,6 @@ namespace Corsica.Service
             Console.WriteLine("Player unsubscribe: " + playerName);
         }
 
-        public void PlayCard()
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
     }

@@ -102,6 +102,7 @@
     <Compile Include="AnimatedGameBoard.xaml.cs">
       <DependentUpon>AnimatedGameBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CorsicaClient.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -119,6 +120,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Proxy.cs" />
+    <Compile Include="RefereeCallback.cs" />
     <EmbeddedResource Include="AboutCorsica.resx">
       <DependentUpon>AboutCorsica.cs</DependentUpon>
       <SubType>Designer</SubType>
