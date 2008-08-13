@@ -12,19 +12,22 @@ namespace Corsica.Service
         CallbackContract = typeof(IRefereeConcractCallback))]
     interface IRefereeContract
     {
-        [OperationContract(IsOneWay=true)]
+        [OperationContract(IsOneWay = true)]
         void Subscribe(string playerName);
 
-        [OperationContract(IsInitiating=false, IsTerminating=true, IsOneWay=true)]
+        [OperationContract(IsInitiating = false, IsTerminating = true, IsOneWay = true)]
         void Unsubscribe();
-
-        [OperationContract(IsInitiating = false)]
-        void PlayCard();
     }
 
     interface IRefereeConcractCallback
     {
         [OperationContract(IsOneWay = true)]
-        void OnCardPlayed(string user);
+        void WaitForPlayer();
+
+        [OperationContract(IsOneWay = true)]
+        void GameStarts();
+
+        [OperationContract(IsOneWay = true)]
+        void GameAborded();
     }
 }
