@@ -20,8 +20,6 @@ namespace Corsica.WPFClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CorsicaClient client = null;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -45,13 +43,13 @@ namespace Corsica.WPFClient
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            client = new CorsicaClient();
-            client.Subscribe(Guid.NewGuid().ToString("N"));
+            //client = new CorsicaClient();
+            //client.Subscribe(Guid.NewGuid().ToString("N"));
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            client.Unsubscribe();
+            //client.Unsubscribe();
         }
     }
 }
