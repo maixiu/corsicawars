@@ -14,7 +14,7 @@ namespace Corsica.Service
     public class RefereeService : IRefereeContract
     {
         private static Dictionary<string, IRefereeConcractCallback> clientList = new Dictionary<string, IRefereeConcractCallback>();
-        private string playerName = string.Empty;
+        private String playerName = null;
 
         #region IRefereeContract Members
 

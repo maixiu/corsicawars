@@ -6,16 +6,21 @@ using System.ServiceModel;
 
 namespace Corsica.WPFClient
 {
-    public class CorsicaClient
+    public class CorsicaClient : IRefereeContractCallback
     {
         private RefereeContractClient client = null;
-        private RefereeCallback callbackClient = null;
+
+        public event EventHandler OnWaitForPlayer;
+        public event EventHandler OnGameStarts;
+        public event EventHandler OnGameAborded;
+
+        public CorsicaClient()
+        {
+            client = new RefereeContractClient(new InstanceContext(this));
+        }
 
         public void Subscribe(string playerName)
         {
-            callbackClient = new RefereeCallback();
-            client = new RefereeContractClient(new InstanceContext(callbackClient));
-
             client.Subscribe(playerName);
         }
 
@@ -23,5 +28,27 @@ namespace Corsica.WPFClient
         {
             client.Unsubscribe();
         }
+
+        #region IRefereeContractCallback Members
+
+        public void WaitForPlayer()
+        {
+            if (OnWaitForPlayer != null)
+                OnWaitForPlayer(this, null);
+        }
+
+        public void GameStarts()
+        {
+            if (OnGameStarts != null)
+                OnGameStarts(this, null);
+        }
+
+        public void GameAborded()
+        {
+            if (OnGameAborded != null)
+                OnGameAborded(this, null);
+        }
+
+        #endregion
     }
 }

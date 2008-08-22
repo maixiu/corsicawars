@@ -20,9 +20,18 @@ namespace Corsica.WPFClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        CorsicaClient client = App.Client;
+
         public MainWindow()
         {
             InitializeComponent();
+            client.OnWaitForPlayer += new EventHandler(client_OnWaitForPlayer);
+        }
+
+        void client_OnWaitForPlayer(object sender, EventArgs e)
+        {
+            mainBoard.Visibility = Visibility.Visible;
+            mainBoard.ShowMessage("Wait for a player", false);
         }
 
         private void miAbout_Click(object sender, RoutedEventArgs e)
@@ -38,18 +47,16 @@ namespace Corsica.WPFClient
 
         private void miNew_Click(object sender, RoutedEventArgs e)
         {
-            mainBoard.BeginGame();
-        }
-
-        private void Window_Initialized(object sender, EventArgs e)
-        {
-            //client = new CorsicaClient();
-            //client.Subscribe(Guid.NewGuid().ToString("N"));
+            client = new CorsicaClient();
+            client.Subscribe(Guid.NewGuid().ToString("N").Remove(5));
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            //client.Unsubscribe();
+            if (client != null)
+            {
+                client.Unsubscribe();
+            }
         }
     }
 }
