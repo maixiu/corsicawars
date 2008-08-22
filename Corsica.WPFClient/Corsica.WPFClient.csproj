@@ -120,7 +120,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Proxy.cs" />
-    <Compile Include="RefereeCallback.cs" />
     <EmbeddedResource Include="AboutCorsica.resx">
       <DependentUpon>AboutCorsica.cs</DependentUpon>
       <SubType>Designer</SubType>

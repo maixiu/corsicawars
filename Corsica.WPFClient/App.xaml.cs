@@ -13,10 +13,5 @@ namespace Corsica.WPFClient
     public partial class App : Application
     {
         public static CorsicaClient Client { get; private set; }
-
-        //public new static App Current
-        //{
-        //    get { return (App)Application.Current; }
-        //}
     }
 }

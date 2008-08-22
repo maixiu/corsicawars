@@ -42,6 +42,31 @@ namespace Corsica.Game
             nextNbChance = null;
         }
 
+        //public void CreateCardBox()
+        //{
+        //    cardBox = new Deck();
+        //    foreach (CardType card in Enum.GetValues(typeof(CardType)))
+        //    {
+        //        foreach (ColorType color in Enum.GetValues(typeof(ColorType)))
+        //        {
+        //            cardBox.AddCard(new Card() { Type = card, Color = color });
+        //        }
+        //    }
+        //}
+
+        //private void DistributeCards()
+        //{
+        //    cardBox.ShuffleCards();
+        //    player1.cardDeck.Cards.Clear();
+        //    player2.cardDeck.Cards.Clear();
+
+        //    for (int i = 0; i < cardBox.Cards.Count - 1; i += 2)
+        //    {
+        //        player1.cardDeck.AddCard(cardBox.Cards[i]);
+        //        player2.cardDeck.AddCard(cardBox.Cards[i + 1]);
+        //    }
+        //}
+
         public void PlayCard(Player player)
         {
             if (currentPlayer == player)

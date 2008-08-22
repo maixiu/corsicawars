@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Corsica.WPFClient"
     Title="Corsica Wars" Height="457.28" Width="440.132"
-    Initialized="Window_Initialized"
     Closed="Window_Closed">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
@@ -16,7 +15,7 @@
             </MenuItem>
         </Menu>
         <Viewbox>
-            <local:AnimatedGameBoard x:Name="mainBoard"/>
+            <local:AnimatedGameBoard x:Name="mainBoard" Visibility="Hidden"/>
         </Viewbox>
     </DockPanel>
 </Window>
