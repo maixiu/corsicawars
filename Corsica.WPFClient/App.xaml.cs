@@ -13,5 +13,19 @@ namespace Corsica.WPFClient
     public partial class App : Application
     {
         public static CorsicaClient Client { get; private set; }
+
+        public static CorsicaClient CreateNewClient()
+        {
+            Client = new CorsicaClient();
+            return Client;
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            if (Client != null)
+            {
+                Client.Unsubscribe();
+            }
+        }
     }
 }
