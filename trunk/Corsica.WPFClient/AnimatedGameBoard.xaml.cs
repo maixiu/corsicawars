@@ -104,7 +104,12 @@ namespace Corsica.WPFClient
         {
             Canvas.SetZIndex(tbMessage, 3);
             tbMessage.Text = message;
-            AnimateMessage();
+            AnimateShowMessage(autoHide);
+        }
+
+        public void HideMessage()
+        {
+            AnimateHideMessage();
         }
 
         private Viewbox GetLastMiddleCard()
