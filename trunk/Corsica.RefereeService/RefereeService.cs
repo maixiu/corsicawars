@@ -14,6 +14,7 @@ namespace Corsica.Service
     public class RefereeService : IRefereeContract
     {
         private static Dictionary<string, IRefereeConcractCallback> clientList = new Dictionary<string, IRefereeConcractCallback>();
+        private static Referee gameReferee = new Referee();
         private String playerName = null;
 
         #region IRefereeContract Members
@@ -44,6 +45,11 @@ namespace Corsica.Service
             {
                 throw new FaultException<CorsicaPlayerExists>(new CorsicaPlayerExists());
             }
+        }
+
+        public void PlayerPlay()
+        {
+
         }
 
         public void Unsubscribe()

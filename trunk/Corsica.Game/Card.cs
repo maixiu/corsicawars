@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace Corsica.Game
 {
-    public struct Card
+    [DataContract]
+    public class Card
     {
+        [DataMember]
         public CardType Type;
+        [DataMember]
         public ColorType Color;
 
         public override string ToString()
