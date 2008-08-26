@@ -31,10 +31,10 @@ namespace Corsica.Game
             };
         }
 
-        public void BeginNewGame(Player newPlayer1, Player newPlayer2, Deck newMiddleDeck)
+        public void BeginNewGame(String newPlayer1, String newPlayer2, Deck newMiddleDeck)
         {
-            player1 = newPlayer1;
-            player2 = newPlayer2;
+            player1 = new Player(newPlayer1);
+            player2 = new Player(newPlayer2);
             middleDeck = newMiddleDeck;
 
             currentPlayer = null;
