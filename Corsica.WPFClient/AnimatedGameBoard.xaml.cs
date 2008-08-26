@@ -20,7 +20,6 @@ namespace Corsica.WPFClient
     /// </summary>
     public partial class AnimatedGameBoard : UserControl
     {
-        private CorsicaClient client = App.Client;
         private bool isCardsDistributed = false;
         private Border disapBorder = null;
 
@@ -93,7 +92,7 @@ namespace Corsica.WPFClient
         {
             Storyboard sb = new Storyboard();
 
-            DoubleAnimation disappear = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(200)));
+            DoubleAnimation disappear = new DoubleAnimation(0, new Duration(TimeSpan.FromMilliseconds(200)));
             Storyboard.SetTargetProperty(disappear, new PropertyPath("Opacity"));
             sb.Children.Add(disappear);
 
@@ -102,9 +101,18 @@ namespace Corsica.WPFClient
 
         public void ShowMessage(string message, bool autoHide)
         {
-            Canvas.SetZIndex(tbMessage, 3);
+            Canvas.SetZIndex(tbMessage, -1);
             tbMessage.Text = message;
             AnimateShowMessage(autoHide);
+        }
+
+        public void DistribCards()
+        {
+            if (!isCardsDistributed)
+            {
+                BeginStoryboard((Storyboard)this.Resources["distribCards"]);
+                isCardsDistributed = true;
+            }
         }
 
         public void HideMessage()
@@ -182,31 +190,13 @@ namespace Corsica.WPFClient
             canvasBoard.Children.Remove(disapBorder);
         }
 
-        private void cardPlayer1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //if (PlayerPlay(player1))
-            //{
-            //    AnimateCard(cardPlayer1);
-            //}
-
-        }
-
         private void cardPlayer2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            //App.Client.PlayerPlay()
             //if (PlayerPlay(player2))
             //{
             //    AnimateCard(cardPlayer2);
             //}
-        }
-
-        private void distribDeck_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (!isCardsDistributed)
-            {
-                BeginGame();
-                BeginStoryboard((Storyboard)this.Resources["distribCards"]);
-                isCardsDistributed = true;
-            }
         }
 
         private void DeleteMiddleCards()

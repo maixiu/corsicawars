@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 
+using Corsica.Game;
+
 namespace Corsica.Service
 {
     [ServiceContract(
@@ -17,6 +19,9 @@ namespace Corsica.Service
 
         [OperationContract(IsInitiating = false, IsTerminating = true, IsOneWay = true)]
         void Unsubscribe();
+
+        [OperationContract(IsInitiating = false, IsTerminating = false, IsOneWay = true)]
+        void PlayerPlay();
     }
 
     interface IRefereeConcractCallback
@@ -29,5 +34,8 @@ namespace Corsica.Service
 
         [OperationContract(IsOneWay = true)]
         void GameAborded();
+
+        [OperationContract(IsOneWay = true)]
+        void CardPlayed(string player, Card cardPlayed);
     }
 }

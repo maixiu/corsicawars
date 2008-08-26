@@ -14,7 +14,7 @@
             </MenuItem>
         </Menu>
         <Viewbox>
-            <local:AnimatedGameBoard x:Name="mainBoard" Visibility="Hidden"/>
+            <local:AnimatedGameBoard x:Name="mainBoard"/>
         </Viewbox>
     </DockPanel>
 </Window>
